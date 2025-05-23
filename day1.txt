@@ -1,4 +1,64 @@
 
+
+
+
+type EmployeeType = 'full-time' | 'part-time'
+
+interface FullTimeEmployee {
+  type: EmployeeType; 
+  name: string;
+  annualSalary: number;
+  benefits: string[];
+}
+
+interface PartTimeEmployee {
+  type: EmployeeType;
+  name: string;
+  hourlyRate: number;
+  hoursPerWeek: number;
+}
+
+ 
+
+type Employee = FullTimeEmployee | PartTimeEmployee 
+
+function calculateMonthlyCompensation(emp: Employee): number {
+  switch (emp.type) {
+    case 'full-time':
+      return emp.annualSalary / 12;
+
+    case 'part-time':
+      return emp.hourlyRate * emp.hoursPerWeek * 4;
+
+    
+
+    default:
+      const _exhaustiveCheck: never = emp;
+      throw new Error(`Unhandled employee type: ${_exhaustiveCheck}`);
+  }
+}
+const fullTimeEmp: FullTimeEmployee = {
+  type: 'full-time',
+  name: 'Alice',
+  annualSalary: 90000,
+  benefits: ['Health', 'Dental']
+};
+
+const partTimeEmp: PartTimeEmployee = {
+  type: 'part-time',
+  name: 'Bob',
+  hourlyRate: 25,
+  hoursPerWeek: 25
+};
+
+ ;
+
+console.log(calculateMonthlyCompensation(fullTimeEmp));   
+console.log(calculateMonthlyCompensation(partTimeEmp));   
+ 
+
+
+----------
 interface FullTimeEmp{
     type:'full-time'
     name: string
