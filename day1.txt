@@ -1,3 +1,27 @@
+type EmployeeID=string & {__brand: 'EmployeeID'}
+type DepartmentID=string & {__brand: 'DepartmentID'}
+
+
+function toEmployeeID(id:string):EmployeeID{
+    return id as EmployeeID
+}
+function toDepartmentID(id:string):DepartmentID{
+    return id as DepartmentID
+}
+function getEmpDetails(id:EmployeeID){
+    console.log('fetching Data ',id);
+    
+}
+const empID= toEmployeeID('emp101')
+const depID= toDepartmentID("dep101")
+
+getEmpDetails(empID)
+
+
+-------------
+
+
+
 type Employee = {
 
     id: number
