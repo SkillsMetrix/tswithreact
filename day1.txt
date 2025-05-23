@@ -22,10 +22,30 @@ const engineer:Engineer={
     skills:["TS","react"]
 }
 const hr:HrEmployee={
-    id:101,
-    name:'Bose',
+    id:102,
+    name:'mariya',
     policies:["Dress Policy","Work Policy"]
 }
 printEmployeeDetails(engineer)
 printEmployeeDetails(hr)
  
+//------default types
+
+class EmployeeManager<T extends BaseEmployee=BaseEmployee>{
+    private employees: T[]=[]
+    addEmployee(emp:T):void {
+        this.employees.push(emp)
+    }
+    list():void{
+        this.employees.forEach(e=> console.log(`ID: ${e.id}, Name: ${e.name}`))
+    }
+
+}
+// usage of default
+const baseManager= new EmployeeManager()
+baseManager.addEmployee({id:103,name:"Dummy user"})
+baseManager.list()
+// usage with specific type
+
+const engManager= new EmployeeManager<Engineer>()
+engManager.addEmployee({id:104,name:"Dummy user",skills:[""]})
