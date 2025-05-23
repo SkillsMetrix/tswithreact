@@ -49,3 +49,61 @@ baseManager.list()
 
 const engManager= new EmployeeManager<Engineer>()
 engManager.addEmployee({id:104,name:"Dummy user",skills:[""]})
+
+
+
+
+-------------------
+
+
+
+type Employee= {
+    id: number
+    name: string
+    department:string
+    salary: number
+    isActive:boolean
+}
+//partial
+function updateEmployee(id:number,updates:Partial<Employee>){
+    console.log(`updating employee ${id} with`, updates);
+    
+}
+updateEmployee(101, {name:"Alice",isActive:false})
+// Pick
+type EmployeeSummary=Pick<Employee , "id" | "name">
+
+const summary: EmployeeSummary={
+    id:101,
+    name:'tom'
+}
+//return type
+
+function createEmployee():Employee{
+    return {
+        id:101,
+        name: 'julia',
+        department: 'Eng',
+        salary :2323,
+        isActive: true
+    }
+}
+type CreatedEmployee= ReturnType<typeof createEmployee>
+// keep types in sync between fun output and var or other api conuming the result
+const newEmp:CreatedEmployee=createEmployee()
+
+//Awaited ( unwraps the resolved type of Promise)
+
+async function fetchEmployee():Promise<Employee> {
+    // simulating API calls
+   return {
+        id:101,
+        name: 'julia',
+        department: 'Eng',
+        salary :2323,
+        isActive: true
+    }
+}
+
+type EmployeeData= Awaited<ReturnType<typeof fetchEmployee>>
+const emp: EmployeeData=await fetchEmployee() // same as type Employee
