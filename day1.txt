@@ -1,6 +1,58 @@
+type Employee = {
 
+    id: number
+    name: string
+    position: string
+    subordinates?: Employee[]
+}
+const ceo: Employee = {
+    id: 1,
+    name: 'alice',
+    position: 'CEO',
+    subordinates: [
+        {
+            id: 2,
+            name: 'Bob',
+            position: 'CTO',
+            subordinates: [
+                {
+                    id: 4,
+                    name: 'David',
+                    position: 'Lead Eng',
+                },
+                {
+                    id: 5,
+                    name: 'Eva',
+                    position: 'Devops'
+                }
+            ]
+        },
+        {
+            id: 3,
+            name: 'Clara',
+            position: 'CFO',
+            subordinates: [
+                {
+                    id: 6,
+                    name: 'Frank',
+                    position: 'Accountant'
+                }
+            ]
+        }
+    ]
+}
+function printData(employee: Employee, level: number = 0): void {
+    console.log(`${' '.repeat(level * 2)} - ${employee.name} (${employee.position})`);
+    if (employee.subordinates) {
+        for (const subordinate of employee.subordinates) {
+            printData(subordinate, level + 1)
+        }
+    }
 
+}
+printData(ceo)
 
+------
 
 type EmployeeType = 'full-time' | 'part-time'
 
