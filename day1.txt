@@ -1,0 +1,52 @@
+// define a generic interface for entity with ID
+interface Entity<T> {
+    id: number
+    data: T
+}
+
+// Define Employee Type
+
+interface Employee {
+    name: string
+    role: string
+    salary: number
+}
+// generic function to log entity details
+
+function logEntityDetails<T>(entity: Entity<T>): void {
+    console.log(`Entity ID : ${entity.id}`);
+    console.log(`Entity Data`, entity.data);
+
+
+}
+//create employee and use generic fun
+const employeeEntity: Entity<Employee> = {
+    id: 101,
+    data: {
+        name: "Tom",
+        role: "Developer",
+        salary: 67890
+    }
+}
+logEntityDetails(employeeEntity)
+
+// generic repo for entity type
+class Repository<T> {
+    private items: T[] = []
+    add(item: T): void {
+        this.items.push(item)
+    }
+    getAll(): T[] {
+        return this.items
+    }
+
+}
+// use repo
+
+const empRepo = new Repository<Employee>()
+empRepo.add({ name: "Bob", role: "Tester", salary: 1234 })
+empRepo.add({ name: "tom", role: "dev", salary: 13234 })
+
+console.log("All Records", empRepo.getAll);
+
+
