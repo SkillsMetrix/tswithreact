@@ -1,4 +1,55 @@
 
+interface FullTimeEmp{
+    type:'full-time'
+    name: string
+    salary:number
+    benifits:string[]
+}
+
+interface PartTimeEmp{
+    type:'part-time'
+    name: string
+    hourlyRAte:number
+    hoursPerWeek:number
+}
+
+type Employee =FullTimeEmp | PartTimeEmp
+
+function isFullTimeEmp(emp:Employee):emp is FullTimeEmp{
+return emp.type ==='full-time'
+}
+
+function isPartTimeEmp(emp:Employee):emp is PartTimeEmp{
+return emp.type ==='part-time'
+}
+
+//using it
+function printData(emp:Employee){
+    console.log(`Name ${emp.name}`);
+    if(isFullTimeEmp(emp)){
+        console.log(`Salary ${emp.salary}`);
+        
+    }else if(isPartTimeEmp(emp)){
+        console.log(`Salary ${emp.hourlyRAte}`);
+    }
+    
+}
+const emp1:Employee={
+    type: 'full-time',
+    name: 'jane',
+    salary:2323,
+    benifits:['']
+}
+const emp2:Employee={
+    type: 'part-time',
+    name: 'john',
+    
+     hourlyRAte:2334
+}
+printData(emp1)
+printData(emp2)
+
+-----
 
 interface Employee{
     id:number
