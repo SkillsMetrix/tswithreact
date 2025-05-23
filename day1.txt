@@ -1,4 +1,29 @@
 
+
+interface Employee{
+    id:number
+    name:string
+}
+
+ namespace Employee{
+    export function create(id:number,name:string):Employee{
+        return {id,name}
+    }
+ }
+
+ export function isIntern(employee:Employee):boolean{
+    return employee.name.toLowerCase().includes("intern")
+ }
+
+ const emp1= Employee.create(101,'Adam')
+ const emp2= Employee.create(2,"Bob")
+
+ console.log(emp1);
+ console.log(emp2);
+ 
+ 
+
+-----
 interface BaseEmployee {
     id: number
     name: string
